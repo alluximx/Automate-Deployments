@@ -3,12 +3,12 @@
 1. Create the VPS Server
 2. Set time zone and encodings
 	*	As root user run
-		'''dpkg-reconfigure tzdata && \
+		```dpkg-reconfigure tzdata && \
 		dpkg-reconfigure locales  && \
 		apt-get update  && \
 		apt-get upgrade -y && \
 		apt-get install -y git vim wget curl
-		'''
+		```
 
 *	Optional
 	*	Install Bashit to have a "sexy theme"
@@ -20,3 +20,4 @@
 	*	useradd -m -s /bin/bash -G sudo "user-name"
 *	Set password to the user created
 	*	passwd "user-name"
+
