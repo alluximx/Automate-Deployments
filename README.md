@@ -15,7 +15,8 @@
 	```
 4. Optional
 	*	Install Bashit to have a "sexy theme"
-		```git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && ~/.bash_it/install.sh \
+		```
+		git clone --depth=1 https://github.com/Bash-it/bash-it.git ~/.bash_it && ~/.bash_it/install.sh \
 		&& mkdir -p ~/.bash_it/plugins/enabled/ \
 		&& ln -s ~/.bash_it/plugins/available/history.plugin.bash ~/.bash_it/plugins/enabled/250---history.plugin.bash \
 		&& sed -i 's/bobby/sexy/' ~/.bashrc
