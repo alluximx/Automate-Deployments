@@ -41,6 +41,7 @@
 	```
 	ssh -T git@github.com
 	```
+7.1 Add the generated key to your repository
 8. Edit  ```/etc/ssh/sshd_config```
 	```PermitRootLogin no```
 9. Restart the sshd server
@@ -48,4 +49,7 @@
 10. Optional
 	* You can set a new hostname for your server
 	```sudo hostnamectl set-hostname "server-name"```
-11. 
+11. In your terminal run
+	```
+	ansible-playbook "deploy-file-name".yml -i hosts -K
+	```
