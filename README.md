@@ -39,10 +39,11 @@
 	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/id_rsa
 	```
+	* Add the generated key to your repository and then test the conection
 	```
 	ssh -T git@github.com
 	```
-	Add the generated key to your repository
+	
 8. Edit  ```/etc/ssh/sshd_config```
 	```PermitRootLogin no```
 9. Restart the sshd server
