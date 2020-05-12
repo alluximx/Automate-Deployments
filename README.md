@@ -41,7 +41,7 @@
 	```
 	ssh -T git@github.com
 	```
-7.1 Add the generated key to your repository
+	Add the generated key to your repository
 8. Edit  ```/etc/ssh/sshd_config```
 	```PermitRootLogin no```
 9. Restart the sshd server
