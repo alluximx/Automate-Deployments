@@ -1,0 +1,30 @@
+- name: Create main dirs for {{project_name}}
+  file:
+    path: "/etc/{{project_name}}/"
+    state: directory
+
+- name: Copy gunicorn configs
+  template:
+    src: gunicorn.conf.py
+    dest: "/etc/{{project_name}}/gunicorn.conf.py"
+  become: True
+
+- name: Copy gunicorn environment file
+  template:
+    src: gunicorn.env
+    dest: "/etc/{{project_name}}/gunicorn.env"
+  become: True
+
+- name: Copy gunicorn system unit
+  template:
+    src: gunicorn.service
+    dest: /etc/systemd/system/{{project_name}}.service
+  become: True
+
+- name: Restart gunicorn service
+  systemd:
+    name: "{{project_name}}"
+    state: restarted
+    daemon_reload: yes
+    enabled: yes   
+  become: True

@@ -1,0 +1,13 @@
+[Unit]
+Description={{project_name}}
+
+[Service]
+Type=simple
+PIDFile=/home/{{server_user}}/{{project_name}}/gunicorn.pid
+User={{server_user}}
+Group={{server_user}}
+EnvironmentFile=/etc/{{project_name}}/gunicorn.env
+WorkingDirectory=/home/{{server_user}}/{{project_name}}/
+ExecStart=/home/{{server_user}}/{{project_name}}/venv/bin/gunicorn --config /etc/{{project_name}}/gunicorn.conf.py {{project_name}}.wsgi:application
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s TERM $MAINPID

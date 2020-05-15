@@ -1,0 +1,37 @@
+---
+- name: Install nginx
+  apt:
+    name: nginx
+    state: present
+
+- name: Deactivate the default nginx from sites-available
+  file:
+    path: /etc/nginx/sites-available/default
+    state: absent
+
+- name: Deactivate the default nginx from sites-enabled
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
+
+- name: Copy project-nginx-conf
+  template:
+    src: nginx-conf
+    dest: /etc/nginx/sites-available/
+
+- name: Rename defult file
+  command: mv /etc/nginx/sites-available/nginx-conf /etc/nginx/sites-available/{{project_name}}
+
+- name: Deactivate default nginx-conf
+  file:
+    path: /etc/nginx/sites-available/nginx-conf
+    state: absent
+
+- name: Activate the projec site
+  file: 
+    src: /etc/nginx/sites-available/{{project_name}}
+    dest: /etc/nginx/sites-enabled/{{project_name}}
+    state: link
+
+- name: Restart nginx.service
+  service: name=nginx state=restarted

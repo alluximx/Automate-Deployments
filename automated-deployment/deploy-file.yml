@@ -1,0 +1,39 @@
+- hosts: all
+  gather_facts: no
+  become: True
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+    server_dns: 3.235.153.247
+    server_user: juan
+
+    project_name: monamour
+    project_settings_path: monamour/settings
+    project_main_settings_file: monamour.settings.production
+    gunicorn_port: 8000
+
+    db_user: db_user
+    db_name: db_name
+    db_pass: db_pass
+
+    secret_key: p3lx-d(8mea4&0i(b$=y77$f$&rio3zu6g_t4(pj=_sorxryn&
+
+    repository: git@github.com:JoseJuanCM/monamour.git
+    repository_branch: master
+    
+    aws_storage_bucket_name: ""
+    aws_s3_region_name: ""
+    aws_access_key_id: ""
+    aws_s3_custom_domain: ""
+    aws_secret_access_key: ""
+
+  roles:
+    - role: 'deploy/packages'
+      tags: [packages]
+    - role: 'deploy/db'
+      tags: ['db']
+    - role: 'deploy/app'
+      tags: ['app']
+    - role: 'deploy/nginx'
+      tags: ['nginx']
+    - role: 'deploy/gunicorn'
+      tags: ['gunicorn']
